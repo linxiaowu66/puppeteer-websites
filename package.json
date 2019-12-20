@@ -1,0 +1,16 @@
+{
+  "name": "puppeteer-websites",
+  "version": "1.0.0",
+  "description": "puppeteer for some websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "linxiaowu66",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "puppeteer": "^2.0.0"
+  }
+}
