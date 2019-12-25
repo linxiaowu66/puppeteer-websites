@@ -66,6 +66,7 @@ async function parseProductionItems(items, itemElement, pageItem, browser) {
 
 // 存储每一级分类当前解析个数的累计值，用于获取行合并的开始和结束值
 const categoryCountMap = new Map()
+const ranges = []
 
 // 递归遍历产品一级二级三级分类，获取产品的信息，生成符合excel格式的数据
 function traverse(item, result, finalRes) {
@@ -105,7 +106,7 @@ function traverse(item, result, finalRes) {
   ranges.push(range)
   if (result.length <= 2 && (categoryCountMap.get(result.length) !== categoryCountMap.get(result.length + 1))) {
     // 如果二级分类的个数三级分类累计的值不对等，说明该二级分类没有三级分类，因此需要主动填充
-    log(chlak.yellow(`current category ${result} has not third category`))
+    log(chalk.yellow(`current category ${result} has not third category`))
     const range = { s: { c: result.length, r: startRow }, e: { c: result.length, r: endRow }}
     categoryCountMap.set(result.length + 1,  endRow)
     ranges.push(range)
@@ -215,7 +216,6 @@ async function main() {
     spinner.start()
 
     const data = [['一级分类', '二级分类', '三级分类', '产品名称', '详细介绍', '跳转链接']]
-    const ranges = []
 
     result.forEach((item) => {
       const temp = []
